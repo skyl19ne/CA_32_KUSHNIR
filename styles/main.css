@@ -1,0 +1,1036 @@
+@charset "UTF-8";
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+html,
+body {
+  height: 100%;
+  min-width: 320px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Вказуємо box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Усуваємо внутрішні відступи */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Усуваємо зовнішні відступи */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Виставляємо основні налаштування за замовчуванням для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Видаляємо стандартну стилізацію для всіх ul та il, у яких є атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Елементи a, які не мають класу, скидаємо до дефолтних стилів */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Спрощуємо роботу із зображеннями */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* Вказуємо зрозумілу періодичність у потоці даних у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наслідуємо шрифти для інпутів та кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Видаляємо всі анімації та переходи для людей, які вважають за краще їх не використовувати */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Exo2";
+  src: url(base/fonts/Exo2-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Exo2-Thin";
+  src: url(base/fonts/Exo2-Thin.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Exo2-ext";
+  src: url(base/fonts/Exo2-ExtraLight.ttf) format("truetype");
+}
+body {
+  background-image: url(./photo/background.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+}
+
+header {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./photo/12.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.active {
+  padding-left: 5px;
+  border-left: 3px solid white;
+}
+
+.head {
+  width: 1640px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.head__icon {
+  height: 60px;
+  width: 300px;
+  background-image: url(./icon/Frame2.svg);
+  background-size: cover;
+  background-position: center;
+}
+.head__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  animation: bugfix infinite 1s;
+  -webkit-animation: bugfix infinite 1s;
+  margin: 0;
+  height: 60px;
+  width: 60px;
+}
+@keyframes bugfix {
+  from {
+    padding: 0;
+  }
+  to {
+    padding: 0;
+  }
+}
+.head__menu #overlay-button {
+  padding: 26px 11px;
+  z-index: 5;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.head__menu #overlay-button span {
+  height: 4px;
+  width: 35px;
+  border-radius: 2px;
+  background-color: white;
+  position: relative;
+  display: block;
+  transition: all 0.2s ease-in-out;
+}
+.head__menu #overlay-button span:before {
+  top: -10px;
+  visibility: visible;
+}
+.head__menu #overlay-button span:after {
+  top: 10px;
+}
+.head__menu #overlay-button span:before, .head__menu #overlay-button span:after {
+  height: 4px;
+  width: 35px;
+  border-radius: 2px;
+  background-color: white;
+  position: absolute;
+  content: "";
+  transition: all 0.2s ease-in-out;
+}
+.head__menu input[type=checkbox] {
+  display: none;
+}
+.head__menu input[type=checkbox]:checked ~ #overlay {
+  visibility: visible;
+}
+.head__menu input[type=checkbox]:checked ~ #overlay-button:hover span,
+.head__menu input[type=checkbox]:checked ~ #overlay-button span {
+  background: transparent;
+}
+.head__menu input[type=checkbox]:checked ~ #overlay-button span:before {
+  transform: rotate(45deg) translate(7px, 7px);
+  opacity: 1;
+}
+.head__menu input[type=checkbox]:checked ~ #overlay-button span:after {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+.head__menu #overlay {
+  height: 310px;
+  width: 140px;
+  z-index: 2;
+  visibility: hidden;
+  position: fixed;
+  top: 55px;
+  right: 40px;
+}
+.head__menu #overlay.active {
+  visibility: visible;
+}
+.head__menu #overlay ul {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 180px;
+  padding-left: 0;
+  list-style-type: none;
+}
+.head__menu #overlay ul li {
+  padding: 1em;
+  width: 140px;
+}
+.head__menu #overlay ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+.head__menu #overlay ul li a:hover {
+  padding-left: 5px;
+  border-left: 3px solid white;
+  transition: 1s;
+}
+.head__menu_block {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.head__menu_block_item {
+  height: 60px;
+  width: 74px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.head__menu_block_item a {
+  text-align: center;
+  text-decoration: none;
+  font-family: "Exo2";
+  color: white;
+  font-size: 18px;
+  height: 40px;
+}
+.head__search {
+  height: 60px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 500px;
+}
+.head__search_place {
+  height: 60px;
+  width: 420px;
+  background: none;
+  border: 2px solid white;
+  border-radius: 50px;
+  padding-left: 25px;
+  padding-bottom: 2px;
+  font-size: 18px;
+  font-family: "Exo2";
+  cursor: pointer;
+}
+.head__search_place:focus {
+  outline: none;
+  border: none;
+  border: 2px solid white;
+  color: white;
+}
+.head__search_button {
+  margin-left: 5px;
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  border-radius: 50px;
+  background-image: url(./photo/arrow-right-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  transform: rotate(-44deg);
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.head__search_button:hover {
+  background-color: rgb(136, 136, 136);
+}
+.head__search_button:active {
+  background-color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: normal;
+  height: calc(100% - 80px);
+  width: 100%;
+}
+main .facebook {
+  transition: 0.4s;
+}
+main .facebook__img {
+  width: 100%;
+  height: 100%;
+  background-image: url(./icon/facebook.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px;
+}
+main .facebook__img:hover {
+  background-image: url(./icon/facebook1.svg);
+}
+main .facebook:hover {
+  background-color: #4267B2;
+}
+main .linkedin {
+  transition: 0.4s;
+}
+main .linkedin__img {
+  width: 100%;
+  height: 100%;
+  background-image: url(./icon/linkedin.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px;
+}
+main .linkedin__img:hover {
+  background-image: url(./icon/linkedin1.svg);
+}
+main .linkedin:hover {
+  background-color: #0077B5;
+}
+main .twitter {
+  transition: 0.4s;
+}
+main .twitter__img {
+  width: 100%;
+  height: 100%;
+  background-image: url(./icon/twitter.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px;
+}
+main .twitter__img:hover {
+  background-image: url(./icon/twitter1.svg);
+}
+main .twitter:hover {
+  background-color: #1DA1F2;
+}
+main .instagram {
+  transition: 0.4s;
+}
+main .instagram__img {
+  width: 100%;
+  height: 100%;
+  background-image: url(./icon/instagram.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px;
+}
+main .instagram__img:hover {
+  background-image: url(./icon/instagram1.svg);
+}
+main .instagram:hover {
+  background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+}
+main .main__content {
+  width: 1182px;
+  height: 832px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+main .main__content_item {
+  width: 30%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: flex-end;
+}
+main .main__content_item_describe {
+  width: 90%;
+  height: 80%;
+  border: 2px solid white;
+  border-radius: 50px;
+}
+main .main__content_item_social {
+  width: 80%;
+  height: 10%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+main .main__content_item_social_its {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50px;
+  cursor: pointer;
+}
+main .main__content_text {
+  width: 60%;
+  height: 64%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Exo2";
+  color: white;
+}
+main .main__content_text div:nth-child(1) {
+  width: 100%;
+  height: 7%;
+  font-size: 20px;
+  font-family: "Exo2-Thin";
+  border-bottom: 2px solid white;
+}
+main .main__content_text div:nth-child(2) {
+  width: 100%;
+  height: 40%;
+  margin-top: 10px;
+  font-family: "Exo2-ext";
+  font-size: 68px;
+  line-height: 75px;
+}
+main .main__content_text div:nth-child(3) {
+  width: 100%;
+  height: 8%;
+  margin-top: 120px;
+  font-family: "Exo2-ext";
+  text-align: center;
+  font-size: 32px;
+}
+main .main__content_text div:nth-child(4) {
+  width: 100%;
+  height: 12%;
+}
+main .main__content_text div:nth-child(4) button {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-family: "Exo2-ext";
+  text-align: center;
+  font-size: 32px;
+  padding-bottom: 5px;
+}
+main .main__content_text div:nth-child(4) button:hover {
+  background-color: white;
+  color: black;
+}
+main .main__content_text div:nth-child(4) button:active {
+  background: none;
+  color: white;
+}
+main .main__photo {
+  width: 30%;
+  height: 100%;
+  background-image: url(./photo/Default_studio_ghiblikyoto_animation_hayao_miyazakileiji_matsu_0\ копія.png);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: contain;
+}
+main .ds {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+main .ds__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;
+  align-items: normal;
+  height: 40%;
+  width: 90%;
+}
+main .ds__box_label {
+  height: 10%;
+  width: 35%;
+  text-align: center;
+  font-family: "Exo2";
+  color: black;
+  background-color: white;
+  border-radius: 10px 10px 0 0;
+  margin-left: 23px;
+}
+main .ds__box_photo {
+  height: 90%;
+  width: 100%;
+}
+main .ds__box_photo div {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+main .ds__box_photo div #background-video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}
+main .ds__name {
+  height: 5%;
+  width: 90%;
+  color: white;
+  font-family: "Exo2-Thin";
+  font-size: 13px;
+  text-align: center;
+}
+main .ds__text {
+  height: 25%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: normal;
+}
+main .ds__text_item {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: normal;
+}
+main .ds__text_item_sm {
+  height: 100%;
+  width: 60%;
+  border: 2px solid white;
+  background: none;
+  color: white;
+  font-family: "Exo2-Thin";
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+main .ds__text_item_sm:hover {
+  background-color: white;
+  color: black;
+  font-family: "Exo2";
+}
+main .ds__text_item_sm:active {
+  background-color: black;
+  color: white;
+}
+main .ds__text_item_bt {
+  height: 100%;
+  width: 30%;
+  border-radius: 20px;
+  background-color: white;
+  background-image: url(./photo/arrow-right-solid.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(-1, 1);
+  background-size: 28px;
+  cursor: pointer;
+}
+main .ds__text_item:nth-child(2) {
+  flex-direction: row-reverse;
+}
+main .ds__text_item:nth-child(2) button {
+  transform: none;
+}
+main .ds__bt {
+  height: 45px;
+  width: 90%;
+  background-color: white;
+  border-radius: 10px;
+  font-family: "Exo2";
+  font-size: 15px;
+  cursor: pointer;
+}
+main .ds__bt:hover {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-family: "Exo2";
+}
+main .ds__bt:active {
+  background-color: white;
+  color: black;
+}
+main .catalog {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main .catalog__type {
+  height: 80%;
+  width: 100%;
+  padding: 0 40px;
+}
+main .catalog__type_head {
+  color: white;
+  font-family: "Exo2";
+  font-size: 30px;
+}
+main .catalog__type_box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+main .catalog__type_box .num {
+  width: 20%;
+  height: 80%;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  font-family: "Exo2";
+  color: white;
+}
+main .catalog__type_box .num .img {
+  width: 240px;
+  height: 240px;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: white;
+}
+main .catalog__type_box .num .img img {
+  border-radius: 20px;
+}
+main .catalog__type_box .num_head {
+  font-weight: 500;
+}
+main .catalog__type_box .num .price {
+  font-size: 28px;
+  align-self: flex-start;
+}
+main .catalog__type_box .num .features {
+  display: flex;
+  flex-direction: row;
+}
+main .catalog__type_box .num .features_text {
+  text-align: right;
+}
+main .catalog__type_box .num button {
+  width: 100%;
+  height: 50px;
+  background: none;
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+}
+main .catalog__type_box .num button:hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+  color: #000;
+}
+main .catalog__type_box .num button:active {
+  width: 100%;
+  height: 50px;
+  background: none;
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+}
+main .catalog__type_box .num:hover {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact_box {
+  height: 715px;
+  width: 500px;
+  display: flex;
+  margin-top: 100px;
+}
+
+fieldset {
+  width: 500px;
+  height: 500px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Exo2";
+  border-radius: 20px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
+fieldset p {
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+fieldset form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+fieldset form input {
+  font-family: "Exo2";
+  width: 100%;
+  outline: none;
+  border: none;
+  background: none;
+  color: white;
+  border-bottom: 1px solid white;
+  font-size: 16px;
+}
+
+fieldset form input:nth-child(1) {
+  background: none;
+  border-bottom: 1px solid white;
+  font-size: 16px;
+}
+
+fieldset form input[type=submit] {
+  background: none;
+  border: 1px solid white;
+  font-size: 16px;
+  height: 40px;
+}
+
+fieldset form input[type=submit]:hover {
+  font-family: "Exo2";
+  border: none;
+  background-color: white;
+  color: #2e2e2e;
+}
+
+fieldset form input[type=submit]:active {
+  border: 1px solid white;
+}
+
+fieldset form textarea {
+  resize: none;
+  font-family: "Exo2";
+  width: 400px;
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border: 1px solid white;
+}
+
+fieldset form textarea:focus {
+  outline: none;
+  border: none;
+  border: 1px solid white;
+}
+
+fieldset form input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    background-image: url(photo/background2.jpeg);
+    background-size: contain;
+    background-color: #000;
+    width: 320px;
+  }
+  .active {
+    border: 0;
+    border-bottom: 0;
+    border: 2px solid white;
+  }
+  header {
+    width: 320px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: normal;
+  }
+  .head {
+    width: 320px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: normal;
+    flex-wrap: wrap;
+  }
+  .head__icon {
+    height: 60px;
+    width: 260px;
+    background-image: url(./icon/Frame2.svg);
+    background-size: cover;
+    background-position: center;
+    order: 1;
+  }
+  .head__menu {
+    height: 60px;
+    width: 60px;
+    order: 1;
+  }
+  .head__menu #overlay {
+    height: 300px;
+    width: 320px;
+    background-image: linear-gradient(225deg, hsl(270, 100%, 7%) 0%, hsl(230, 47%, 15%) 63%, hsl(216, 51%, 20%) 72%, hsl(207, 50%, 24%) 76%, hsl(202, 46%, 30%) 79%, hsl(197, 39%, 35%) 82%, hsl(191, 31%, 42%) 84%, hsl(185, 23%, 49%) 86%, hsl(177, 23%, 57%) 89%, hsl(166, 26%, 66%) 91%, hsl(153, 30%, 76%) 94%, hsl(133, 40%, 86%) 97%, hsl(104, 100%, 95%) 100%);
+    border-radius: 5px;
+    top: 150px;
+    right: 0;
+  }
+  .head__menu #overlay ul {
+    height: 300px;
+  }
+  .head__menu #overlay ul li {
+    padding: 5px;
+    width: 320px;
+  }
+  .head__menu #overlay ul li a {
+    height: 50px;
+    padding: 5px 0 0 0;
+    border-radius: 5px;
+  }
+  .head__menu #overlay ul li a:hover {
+    padding-left: 0;
+    border-left: 0;
+    transition: 1s;
+  }
+  .head__menu_block {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .head__menu_block_item {
+    height: 60px;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .head__menu_block_item a {
+    width: 100%;
+  }
+  .head__search {
+    height: 60px;
+    width: 300px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    order: 2;
+  }
+  .head__search_place {
+    height: 60px;
+    width: 200px;
+    background: none;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+    font-size: 18px;
+    font-family: "Exo2";
+    cursor: pointer;
+  }
+  .head__search_place:focus {
+    outline: none;
+    border: none;
+    border: 2px solid white;
+    color: white;
+  }
+  .head__search_button {
+    margin-left: 5px;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    border-radius: 50px;
+    background-image: url(./photo/arrow-right-solid.svg);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    transform: rotate(-44deg);
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+  .head__search_button:hover {
+    background-color: white;
+  }
+  .head__search_button:active {
+    background-color: rgb(136, 136, 136);
+  }
+  main {
+    background-image: linear-gradient(325deg, hsl(315, 88%, 57%) 0%, hsl(307, 74%, 60%) 8%, hsl(296, 66%, 62%) 16%, hsl(283, 74%, 67%) 22%, hsl(270, 80%, 72%) 27%, hsl(257, 85%, 75%) 31%, hsl(250, 68%, 70%) 33%, hsl(249, 46%, 58%) 35%, hsl(246, 41%, 46%) 36%, hsl(241, 52%, 34%) 38%, hsl(230, 100%, 20%) 42%, hsl(0, 0%, 0%) 68%);
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    align-items: center;
+    height: 1400px;
+  }
+  main .main__content {
+    width: 320px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  main .main__content_item {
+    margin-top: 50px;
+    order: 2;
+    width: 320px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-end;
+  }
+  main .main__content_text {
+    order: 1;
+    width: 300px;
+    height: 670px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+  main .main__content_text div:nth-child(1) {
+    height: 30px;
+  }
+  main .main__content_text div:nth-child(2) {
+    width: 300px;
+    height: 150px;
+    margin-top: 0;
+    font-family: "Exo2-ext";
+    font-size: 36px;
+    font-weight: bold;
+    line-height: normal;
+    text-align: justify;
+  }
+  main .main__content_text div:nth-child(3) {
+    width: 100%;
+    height: 100px;
+    margin-top: 0;
+    font-family: "Exo2-ext";
+    text-align: center;
+    font-size: 32px;
+  }
+  main .main__photo {
+    display: none;
+  }
+  main .ds {
+    height: 700px;
+  }
+}/*# sourceMappingURL=main.css.map */
